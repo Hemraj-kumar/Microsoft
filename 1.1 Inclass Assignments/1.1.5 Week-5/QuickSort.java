@@ -15,7 +15,9 @@ class Solution {
                 arr[end]=temp;
             }
         }
-        int k=arr[i];arr[i]=arr[end];arr[end]=k;
+        int k=arr[i];
+        arr[i]=arr[end];
+        arr[end]=k;
         return end;
     }
     static int[] QuickSort(int[]arr,int start,int end){
