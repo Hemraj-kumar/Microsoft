@@ -1,0 +1,23 @@
+class Solution {
+    private boolean even=true;
+    private PriorityQueue<Integer> min=new PriorityQueue<>();
+    private PriorityQueue<Integer> max=new PriorityQueue<>(Collections.reverseOrder());
+    public void add(int num){
+        if(even){
+            min.offer(num);max.offer(min.poll());
+        }else{
+            max.offer(num);min.offer(max.poll());
+        }
+        even=!even;
+    }
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        List<Integer> arr=new ArrayList<>();
+        for(int index=0;index<nums1.length;index++) arr.add(nums1[index]);
+        for(int ctr=0;ctr<nums2.length;ctr++) arr.add(nums2[ctr]);
+        for(int index=0;index<arr.size();index++){
+            add(arr.get(index));
+        }
+        if(even) return (max.peek()+min.peek())/2.0;
+        else return max.peek();
+    }
+}
